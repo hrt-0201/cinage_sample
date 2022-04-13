@@ -46,12 +46,4 @@ export default {
     vendor: ['vue2-google-maps'],
     transpile: [/^vue2-google-maps($|\/)/]
   },
-  
-  router: {
-    extendRoutes(routes) {
-      routes.push(
-        { path: '/', redirect: '/store/v2' },
-      )
-    }
-  }
 }

@@ -147,7 +147,7 @@ export default {
         this.$store.commit("insert", { content: this.content });
         this.content = "";
       } else {
-        alert("タスク名がからです");
+        alert("タスク名がからです ");
       }
     },
     remove: function (todo) {
