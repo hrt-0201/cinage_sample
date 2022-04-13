@@ -2,7 +2,7 @@
 <template>
   <section class="container">
     <div class="sidebar-container">
-      <sidebar-menu :menu="menu" :width="'50px'" :widthCollapsed="'50px'" />
+      <sidebar-menu :menu="menu" :width="'100px'" :widthCollapsed="'100px'" />
     </div>
     <h1>アプリの使い方</h1>
     <ul>
@@ -94,36 +94,22 @@ export default {
         },
                 {
           href: "/store/v2",
-          title: "store_info",
-          icon: "fas fa-beer",
-          badge: {
-            text: "new",
-            class: "vsm--badge_default",
-          },
+          title: "",
+          icon: "fas fa-beer fa-2x",
         },
         {
           href: "/store/map",
-          title: "store_info",
-          icon: "far fa-map",
-          badge: {
-            text: "new",
-            class: "vsm--badge_default",
-          },
+          title: "",
+          icon: "far fa-map fa-3x",
         },
         {
           href: "/todo",
-          title: "store_info",
-          icon: "fa fa-user",
-          badge: {
-            text: "new",
-            class: "vsm--badge_default",
-            // attributes: {}
-            // element: 'span'
-          },
+          title: "",
+          icon: "fa fa-user fa-4x",
         },
         {
           href: "/store",
-          title: "store_info_old",
+          title: "",
           icon: "fa fa-chart-area",
         },
         // TODO: 多分コンポーネントにする場合は以下のように記載する？

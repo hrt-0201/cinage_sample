@@ -2,8 +2,16 @@
 <template>
   <section class="container">
     <div class="sidebar-container">
-      <sidebar-menu :menu="menu" :width="'50px'" :widthCollapsed="'50px'" />
+      <sidebar-menu :menu="menu" :width="'100px'" :widthCollapsed="'100px'" />
     </div>
+    <h1>アプリの使い方</h1>
+    <ul>
+      <li>左のサイドメニューから閲覧したい情報を選んでください</li>
+      <li>この画面はサイネージ初期画面を想定しています</li>
+      <li>不具合や気になる箇所がありましたら教えてください</li>
+      <li>↓のTodoは入力しても画面リロードで消えてしまうのでご注意ください（Vuex利用のため一時的なもの）</li>
+    </ul>
+
     <h1>Todoリスト</h1>
     <div class="addArea">
       <input
@@ -95,7 +103,10 @@ export default {
         {
           href: "/store/map",
           title: "store_info",
-          icon: "far fa-map",
+          icon: {
+            element: "span",
+            class: "far fa-map fa-x"
+          },
           badge: {
             text: "new",
             class: "vsm--badge_default",
@@ -170,6 +181,39 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 15px;
+  font-size: 100px;
+}
+
+/* リストデザイン佣 */
+ul {
+  padding: 0;
+}
+
+ul li {
+  color: black;
+  position:relative;
+  background: #f1f8ff;/*バーの色*/
+  line-height: 1.5;
+  padding: 0.5em;
+  margin-bottom: 4px;
+  border-left : solid 35px #5c9ee7;/*先の色＝アイコン裏の色*/
+  list-style-type: none!important;
+}
+
+ul li:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f303";
+  position: absolute;
+  display: block;
+  padding: 0.5em;
+  width: 1.2em;
+  color: white; /*アイコン色*/
+  font-weight: normal;/*アイコンは太字にしない*/
+  text-align: center;
+  left : -35px; /*左端からのアイコンまでの距離*/
+  /*以下 上下中央寄せのため*/
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 </style>
