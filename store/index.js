@@ -50,6 +50,11 @@ const createStore = () => {
     state: () => ({
       todos: [
         { content: "サイドメニューUX悪いんで直す", created: "2020-04-30 17:00", state: "作業前" },
+        { content: "画面遷移時のロード、初期表示のスプラッシュの実装方法を調査", created: "2020-04-30 17:00", state: "作業前" },
+        { content: "CSSの共通化", created: "2020-04-30 17:00", state: "作業前" },
+        { content: "サイドメニューはコンポーネント化して再利用しやすくする", created: "2020-04-30 17:00", state: "作業前" },
+        { content: "共通利用できるJSはプラグイン化する", created: "2020-04-30 17:00", state: "作業前" },
+        { content: "サイドメニューUI/UX悪いんで直す", created: "2020-04-30 17:00", state: "作業前" },
         {
           content: "Google Map使うか判断",
           created: "2020-04-30 16:00",
