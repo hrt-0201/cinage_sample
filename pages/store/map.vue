@@ -19,7 +19,7 @@
   </v-row> -->
   <div>
     <div class="sidebar-container">
-      <sidebar-menu :menu="menu" :width="'50px'" :widthCollapsed="'50px'" />
+      <sidebar-menu :menu="menu" :width="'60px'" :widthCollapsed="'60px'" />
     </div>
     <div class="map-view">
       <h2>近辺地図</h2>
@@ -55,41 +55,39 @@ export default {
           header: true,
           title: "Main Navigation",
           hiddenOnCollapse: true,
-          hidden: false,
+          hidden: true,
         },
-                {
+        { href: "/sandbox", title: "", icon: "", },
+        { href: "/sandbox", title: "", icon: "", },
+        { href: "/sandbox", title: "", icon: "", },
+        { href: "/sandbox", title: "", icon: "", },
+        { href: "/sandbox", title: "", icon: "", },
+        { href: "/sandbox", title: "", icon: "", },
+        { href: "/sandbox", title: "", icon: "", },
+        {
+          href: "/",
+          title: "",
+          icon: "fas fa-tablet-alt fa-2x",
+        },
+        {
           href: "/store/v2",
-          title: "store_info",
-          icon: "fas fa-beer",
-          badge: {
-            text: "new",
-            class: "vsm--badge_default",
-          },
+          title: "",
+          icon: "fas fa-beer fa-2x",
         },
         {
           href: "/store/map",
-          title: "store_info",
-          icon: "far fa-map",
-          badge: {
-            text: "new",
-            class: "vsm--badge_default",
-          },
+          title: "",
+          icon: "far fa-map fa-2x",
         },
         {
           href: "/todo",
-          title: "store_info",
-          icon: "fa fa-user",
-          badge: {
-            text: "new",
-            class: "vsm--badge_default",
-            // attributes: {}
-            // element: 'span'
-          },
+          title: "",
+          icon: "fa fa-user fa-2x",
         },
         {
           href: "/store",
-          title: "store_info_old",
-          icon: "fa fa-chart-area",
+          title: "",
+          icon: "fa fa-chart-area fa-2x",
         },
         // TODO: 多分コンポーネントにする場合は以下のように記載する？
         // {

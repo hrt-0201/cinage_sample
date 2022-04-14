@@ -2,7 +2,7 @@
 <template>
   <section class="container">
     <div class="sidebar-container">
-      <sidebar-menu :menu="menu" :width="'100px'" :widthCollapsed="'100px'" />
+      <sidebar-menu :menu="menu" :width="'60px'" :widthCollapsed="'60px'" />
     </div>
     <h1>アプリの使い方</h1>
     <ul>
@@ -89,44 +89,39 @@ export default {
           header: true,
           title: "Main Navigation",
           hiddenOnCollapse: true,
-          hidden: false,
+          hidden: true,
         },
-                {
+        { href: "/sandbox", title: "", icon: "", },
+        { href: "/sandbox", title: "", icon: "", },
+        { href: "/sandbox", title: "", icon: "", },
+        { href: "/sandbox", title: "", icon: "", },
+        { href: "/sandbox", title: "", icon: "", },
+        { href: "/sandbox", title: "", icon: "", },
+        { href: "/sandbox", title: "", icon: "", },
+        {
+          href: "/",
+          title: "",
+          icon: "fas fa-tablet-alt fa-2x",
+        },
+        {
           href: "/store/v2",
-          title: "store_info",
-          icon: "fas fa-beer",
-          badge: {
-            text: "new",
-            class: "vsm--badge_default",
-          },
+          title: "",
+          icon: "fas fa-beer fa-2x",
         },
         {
           href: "/store/map",
-          title: "store_info",
-          icon: {
-            element: "span",
-            class: "far fa-map fa-x"
-          },
-          badge: {
-            text: "new",
-            class: "vsm--badge_default",
-          },
+          title: "",
+          icon: "far fa-map fa-2x",
         },
         {
           href: "/todo",
-          title: "store_info",
-          icon: "fa fa-user",
-          badge: {
-            text: "new",
-            class: "vsm--badge_default",
-            // attributes: {}
-            // element: 'span'
-          },
+          title: "",
+          icon: "fa fa-user fa-2x",
         },
         {
           href: "/store",
-          title: "store_info_old",
-          icon: "fa fa-chart-area",
+          title: "",
+          icon: "fa fa-chart-area fa-2x",
         },
         // TODO: 多分コンポーネントにする場合は以下のように記載する？
         // {

@@ -1,7 +1,7 @@
 <template>
   <div class="bl_media_container">
     <div class="sidebar-container">
-      <sidebar-menu :menu="menu" :width="'50px'" :widthCollapsed="'50px'" />
+      <sidebar-menu :menu="menu" :width="'60px'" :widthCollapsed="'60px'" />
     </div>
 
     <div
@@ -27,7 +27,15 @@
           <p v-if="post.manage.seat == '03'" class="crowded">混雑</p>
         </div>
         <!-- <button @click="show(post.store_id)" class="cardlink">クリックする</button> -->
-        <modal :name="'modal-content' + post.store_id" :width="600" :height="900" :adaptive="true">
+        <!-- 以下がモーダル画面のエリア -->
+        <modal
+          :name="'modal-content' + post.store_id"
+          :width="600"
+          :height="900"
+          :adaptive="true"
+        >
+          <!-- モーダルの閉じるボタン -->
+          <div @click="hide(post.store_id)" class="round_btn"></div>
           <div class="storeInfo">
             <p class="img">
               <img :src="post.store_image_url" alt="" />
@@ -77,41 +85,39 @@ export default {
           header: true,
           title: "Main Navigation",
           hiddenOnCollapse: true,
-          hidden: false,
+          hidden: true,
+        },
+        { href: "/sandbox", title: "", icon: "" },
+        { href: "/sandbox", title: "", icon: "" },
+        { href: "/sandbox", title: "", icon: "" },
+        { href: "/sandbox", title: "", icon: "" },
+        { href: "/sandbox", title: "", icon: "" },
+        { href: "/sandbox", title: "", icon: "" },
+        { href: "/sandbox", title: "", icon: "" },
+        {
+          href: "/",
+          title: "",
+          icon: "fas fa-tablet-alt fa-2x",
         },
         {
           href: "/store/v2",
-          title: "store_info",
-          icon: "fas fa-beer",
-          badge: {
-            text: "new",
-            class: "vsm--badge_default",
-          },
+          title: "",
+          icon: "fas fa-beer fa-2x",
         },
         {
           href: "/store/map",
-          title: "store_info",
-          icon: "far fa-map",
-          badge: {
-            text: "new",
-            class: "vsm--badge_default",
-          },
+          title: "",
+          icon: "far fa-map fa-2x",
         },
         {
           href: "/todo",
-          title: "store_info",
-          icon: "fa fa-user",
-          badge: {
-            text: "new",
-            class: "vsm--badge_default",
-            // attributes: {}
-            // element: 'span'
-          },
+          title: "",
+          icon: "fa fa-user fa-2x",
         },
         {
           href: "/store",
-          title: "store_info_old",
-          icon: "fa fa-chart-area",
+          title: "",
+          icon: "fa fa-chart-area fa-2x",
         },
         // TODO: 多分コンポーネントにする場合は以下のように記載する？
         // {
@@ -145,7 +151,9 @@ export default {
 }
 img {
   width: 100%;
+  height: 250px;
   vertical-align: bottom;
+  object-fit: cover;
 }
 /* ここからカードレイアウトのスタイリング */
 /* PC　3カラム */
@@ -154,7 +162,7 @@ img {
   flex-wrap: wrap;
   margin: calc(-30px / 2);
   padding: 30px;
-  padding-left: 50px;
+  padding-left: 60px;
 }
 .bl_media_itemWrapper {
   width: calc(100% / 3 - 30px);
@@ -181,7 +189,7 @@ img {
 
 /* 見出しのスタイリング */
 .storeInfo {
-  padding: 10px;
+  padding: 20px;
 }
 h3 {
   position: relative;
@@ -223,6 +231,37 @@ h3:before {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+/* 閉じるボタンのスタイリング */
+.round_btn {
+  display: block;
+  position: relative;
+  top: 10px;
+  left: 540px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* 丸みの度合い */
+  background: #333; /* ボタンの背景色 */
+}
+
+.round_btn::before,
+.round_btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 21px;
+  background: #fff; /* バツ印の色 */
+}
+
+.round_btn::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.round_btn::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 /* サイドメニューのスタイル */
