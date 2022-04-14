@@ -52,6 +52,14 @@
             <p v-if="post.manage.seat == '02'" class="normal">普通</p>
             <p v-if="post.manage.seat == '03'" class="crowded">混雑</p>
           </div>
+          <div v-for="(comment, index) in comments" :key="index">
+            <div v-if="comment.store_id == post.store_id" class="store_message">
+              <p>{{ comment.comment }}</p>
+              <div class="comment-date">
+                投稿日時：{{ comment.update_date }}
+              </div>
+            </div>
+          </div>
         </modal>
       </div>
     </div>
@@ -71,8 +79,17 @@ export default {
     const response = await $axios.$post(url, params);
     // 配列で返ってくるのでJSONにして返却
     console.log(response);
+
+    const comment_params = {
+      OperationType: "COMMENT",
+    };
+    // リクエスト（Post）
+    const response_comment = await $axios.$post(url, comment_params);
+    // 配列で返ってくるのでJSONにして返却
+    console.log(response);
     return {
       posts: response.Items,
+      comments: response_comment.Items,
     };
   },
 
@@ -274,5 +291,36 @@ h3:before {
   align-items: center;
   text-align: center;
   font-size: 15px;
+}
+
+.store_message {
+  position: relative;
+  padding: 1.5rem 2rem;
+  border: 3px solid #d8d8d8;
+  border-radius: 10px;
+  background: #f9f9f9;
+}
+.store_message:before {
+  position: absolute;
+  bottom: -14px;
+  left: 1em;
+  width: 0;
+  height: 0;
+  content: '';
+  border-width: 14px 12px 0 12px;
+  border-style: solid;
+  border-color: #d8d8d8 transparent transparent transparent;
+}
+
+.store_message:after {
+  position: absolute;
+  bottom: -10px;
+  left: 1em;
+  width: 0;
+  height: 0;
+  content: '';
+  border-width: 14px 12px 0 12px;
+  border-style: solid;
+  border-color: #f9f9f9 transparent transparent transparent;
 }
 </style>
