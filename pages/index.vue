@@ -25,6 +25,20 @@
     </div>
 
     <h1>お店の最新のつぶやき</h1>
+    <div v-for="(comment, index) in comments" :key="index">
+      <div class="balloon01">
+        <div class="icon01">
+          <img
+            src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/store-sample/002.jpg"
+          />
+        </div>
+        <div class="chat01">
+          <div class="talk01">
+            {{comment.comment}}
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="weather" @click="show()">
       <a class="btn btn-custom01">
@@ -47,9 +61,23 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-
 export default {
+  async asyncData({ $axios }) {
+    const params = {
+      OperationType: "COMMENT",
+    };
+    // 取得先のURL
+    const url =
+      "https://pjle7dwta5.execute-api.ap-northeast-1.amazonaws.com/APITest02/dynamodbctrl";
+    // リクエスト（Post）
+    const response = await $axios.$post(url, params);
+    // 配列で返ってくるのでJSONにして返却
+    console.log(response);
+    return {
+      comments: response.Items,
+    };
+  },
+
   data: () => {
     return {
       content: "",
@@ -333,18 +361,19 @@ a.btn-custom01:active:after {
   width: 400px; /* 全体の幅 */
   border: 1px solid #333; /* 全体を囲む枠線 */
 }
- 
+
 #switch {
   display: none; /* チェックボックスを除去 */
 }
- 
+
 .button {
   display: block;
   position: relative;
   padding: 10px 20px;
 }
- 
-.icon { /* アイコン全体のスタイル */
+
+.icon {
+  /* アイコン全体のスタイル */
   display: inline-block;
   position: absolute;
   top: 50%;
@@ -354,8 +383,10 @@ a.btn-custom01:active:after {
   border: 2px solid #333;
   border-radius: 50%;
 }
- 
-.icon::before, .icon::after{ /* 「×」印のスタイル */
+
+.icon::before,
+.icon::after {
+  /* 「×」印のスタイル */
   content: "";
   position: absolute;
   top: 50%;
@@ -363,46 +394,104 @@ a.btn-custom01:active:after {
   width: 2px; /* 棒の幅（太さ） */
   height: 15px; /* 棒の高さ */
   background: #333; /* 棒の色 */
-  transform: translate(-50%,-50%) rotate(90deg); /* デフォルトは「-」印に */
+  transform: translate(-50%, -50%) rotate(90deg); /* デフォルトは「-」印に */
   transition: 0.5s all; /* クリック時のアニメーション設定 */
 }
- 
-.open,.close {
+
+.open,
+.close {
   margin-left: 27px;
 }
- 
-.open { /* 表示ボタンのスタイル */
+
+.open {
+  /* 表示ボタンのスタイル */
   display: inline-block; /* デフォルトは表示 */
 }
- 
-.close { /* 閉じるボタンのスタイル */
+
+.close {
+  /* 閉じるボタンのスタイル */
   display: none; /* デフォルトは非表示 */
 }
- 
-.contents { /* コンテンツのスタイル */
+
+.contents {
+  /* コンテンツのスタイル */
   display: none; /* デフォルトは非表示 */
   padding: 0 20px 15px;
 }
- 
- /* 以降、チェック時（クリック後）のスタイル */
- 
-#switch:checked + .button > .icon::before{
-  transform: translate(-50%,-50%) rotate(45deg);
+
+/* 以降、チェック時（クリック後）のスタイル */
+
+#switch:checked + .button > .icon::before {
+  transform: translate(-50%, -50%) rotate(45deg);
 }
- 
-#switch:checked + .button > .icon::after{
-  transform: translate(-50%,-50%) rotate(-45deg);
+
+#switch:checked + .button > .icon::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
- 
-#switch:checked + .button > .open{
+
+#switch:checked + .button > .open {
   display: none; /* 表示ボタンを非表示 */
 }
- 
-#switch:checked + .button > .close{
+
+#switch:checked + .button > .close {
   display: inline-block; /* 閉じるボタンを表示 */
 }
- 
+
 #switch:checked ~ .contents {
   display: block; /* コンテンツを表示 */
+}
+
+/* つぶやき吹き出しのスタイリング */
+/* 全体の設定 */
+.balloon01 {
+  width: 100%;
+  margin: 1.5em 0;
+  overflow: hidden;
+}
+/* アイコンの場所 */
+.balloon01 .icon01 {
+  float: left;
+  margin-right: -90px;
+  /* アイコンの大きさ */
+  width: 80px;
+}
+/* アイコン画像の作成 */
+.balloon01 .icon01 img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  /* アイコンの枠の太さ、カラーはここで変更 */
+  border: solid 2px #b8860b;
+}
+.balloon01 .chat01 {
+  width: 100%;
+}
+/* 吹き出しの入力部分の作成 */
+.talk01 {
+  /* この部分を外すと横幅いっぱいになります */
+  display: inline-block;
+  position: relative;
+  margin: 5px 0 0 105px;
+  padding: 17px 13px;
+  /* 吹き出しの丸み具合を変更 */
+  border-radius: 12px;
+  /* 吹き出しのカラーはここで変更 */
+  background: #fffacd;
+}
+/* 三角部分の作成 */
+.talk01:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  /* 三角の位置(高さ)を変更 */
+  top: 18px;
+  left: -24px;
+  border: 12px solid transparent;
+  /* 三角部分のカラーはここで変更 */
+  border-right: 12px solid #fffacd;
+}
+.talk01 p {
+  margin: 0;
+  padding: 0;
 }
 </style>
