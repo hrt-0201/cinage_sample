@@ -1,6 +1,7 @@
 <!-- pages/index.vue -->
 <template>
   <section class="container">
+    <div class="top-title">Title Area!!!!</div>
     <div class="sidebar-container">
       <sidebar-menu :menu="menu" :width="'60px'" :widthCollapsed="'60px'" />
     </div>
@@ -25,16 +26,16 @@
     </div>
 
     <h1>お店の最新のつぶやき</h1>
-    <div v-for="(comment, index) in comments" :key="index">
-      <div class="balloon01">
+    <div v-for="comment in comments" :key="comment.update_date">
+      <div class="balloon01 change-time15 fadeUp">
         <div class="icon01">
-          <img
-            src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/store-sample/002.jpg"
-          />
+          <img :src="comment.store_image_url" />
         </div>
         <div class="chat01">
           <div class="talk01">
-            {{comment.comment}}
+            <div class="comment-store-name">{{ comment.store_name }}</div>
+            <p>{{ comment.comment }}</p>
+            <div class="comment-date">投稿日時：{{ comment.update_date }}</div>
           </div>
         </div>
       </div>
@@ -447,13 +448,34 @@ a.btn-custom01:active:after {
   width: 100%;
   margin: 1.5em 0;
   overflow: hidden;
+  animation-name: fadeUpAnime; /*アニメーションの定義名*/
+  animation-duration: 1s; /*アニメーション変化時間 ※デフォルト*/
+  animation-fill-mode: forwards; /*アニメーションの開始と終了時の状態を指定*/
+  opacity: 0;
 }
+
+@keyframes fadeUpAnime {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.change-time15 {
+  animation-duration: 1.5s;
+}
+
 /* アイコンの場所 */
 .balloon01 .icon01 {
   float: left;
-  margin-right: -90px;
+  margin-right: -80px;
   /* アイコンの大きさ */
-  width: 80px;
+  width: 100px;
 }
 /* アイコン画像の作成 */
 .balloon01 .icon01 img {
@@ -461,7 +483,7 @@ a.btn-custom01:active:after {
   height: auto;
   border-radius: 50%;
   /* アイコンの枠の太さ、カラーはここで変更 */
-  border: solid 2px #b8860b;
+  border: solid 3px #1efa1e;
 }
 .balloon01 .chat01 {
   width: 100%;
@@ -476,7 +498,7 @@ a.btn-custom01:active:after {
   /* 吹き出しの丸み具合を変更 */
   border-radius: 12px;
   /* 吹き出しのカラーはここで変更 */
-  background: #fffacd;
+  background: #89fc7e;
 }
 /* 三角部分の作成 */
 .talk01:after {
@@ -488,10 +510,47 @@ a.btn-custom01:active:after {
   left: -24px;
   border: 12px solid transparent;
   /* 三角部分のカラーはここで変更 */
-  border-right: 12px solid #fffacd;
+  border-right: 12px solid #89fc7e;
 }
 .talk01 p {
   margin: 0;
   padding: 0;
+}
+.comment-store-name {
+  position: relative; /*相対位置*/
+  padding-left: 1.2em; /*アイコン分のスペース*/
+  line-height: 1.4; /*行高*/
+}
+.comment-store-name:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f075"; /*アイコンのユニコード*/
+  font-weight: 900;
+  position: absolute; /*絶対位置*/
+  font-size: 1em; /*サイズ*/
+  left: 0; /*アイコンの位置*/
+  top: 0; /*アイコンの位置*/
+  color: #5ab9ff; /*アイコン色*/
+}
+.comment-date {
+  right: 10px;
+  bottom: 5px;
+  /* padding: 10px; */
+  font-size: 1rem;
+  color: #7c7c7c;
+}
+
+
+
+@keyframes typing { from { width: 0; } }
+@keyframes caret { 50% { border-color: transparent; } }
+
+.top-title {
+font-family: monospace; 
+width: 11ch;
+border-right: .08em solid;
+overflow: hidden;
+font-size: 4em;
+white-space: nowrap;
+animation: typing 5s steps(11, end), caret .5s step-end infinite;
 }
 </style>
