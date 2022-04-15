@@ -39,6 +39,11 @@ export default {
           icon: "far fa-map fa-2x",
         },
         {
+          href: "/news",
+          title: "",
+          icon: "far fa-newspaper fa-2x",
+        },
+        {
           href: "/todo",
           title: "",
           icon: "fa fa-user fa-2x",
