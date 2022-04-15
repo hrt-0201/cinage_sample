@@ -1,8 +1,6 @@
 <template>
   <div class="bl_media_container">
-    <div class="sidebar-container">
-      <sidebar-menu :menu="menu" :width="'60px'" :widthCollapsed="'60px'" />
-    </div>
+    <Slidevar001/>
 
     <div
       class="bl_media_itemWrapper"
@@ -53,10 +51,12 @@
             <p v-if="post.manage.seat == '03'" class="crowded">混雑</p>
           </div>
           <div v-for="(comment, index) in comments" :key="index">
-            <div v-if="comment.store_id == post.store_id" class="store_message">
-              <p>{{ comment.comment }}</p>
-              <div class="comment-date">
-                投稿日時：{{ comment.update_date }}
+            <div v-if="comment.store_id == post.store_id">
+              <div class="store_message">
+                <p>{{ comment.comment }}</p>
+                <div class="comment-date">
+                  投稿日時：{{ comment.update_date }}
+                </div>
               </div>
             </div>
           </div>
@@ -96,54 +96,6 @@ export default {
   data: () => {
     return {
       content: "",
-      // TODO: サイドメニュー、コンポーネントにしたい
-      menu: [
-        {
-          header: true,
-          title: "Main Navigation",
-          hiddenOnCollapse: true,
-          hidden: true,
-        },
-        { href: "/sandbox", title: "", icon: "" },
-        { href: "/sandbox", title: "", icon: "" },
-        { href: "/sandbox", title: "", icon: "" },
-        { href: "/sandbox", title: "", icon: "" },
-        { href: "/sandbox", title: "", icon: "" },
-        { href: "/sandbox", title: "", icon: "" },
-        { href: "/sandbox", title: "", icon: "" },
-        {
-          href: "/",
-          title: "",
-          icon: "fas fa-tablet-alt fa-2x",
-        },
-        {
-          href: "/store/v2",
-          title: "",
-          icon: "fas fa-beer fa-2x",
-        },
-        {
-          href: "/store/map",
-          title: "",
-          icon: "far fa-map fa-2x",
-        },
-        {
-          href: "/todo",
-          title: "",
-          icon: "fa fa-user fa-2x",
-        },
-        {
-          href: "/store",
-          title: "",
-          icon: "fa fa-chart-area fa-2x",
-        },
-        // TODO: 多分コンポーネントにする場合は以下のように記載する？
-        // {
-        //   component: componentName,
-        //   // props: componentProps
-        //   // hidden: false
-        //   // hiddenOnCollapse: true
-        // },
-      ],
     };
   },
   methods: {
@@ -281,18 +233,7 @@ h3:before {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-/* サイドメニューのスタイル */
-/* @import url('https://use.fontawesome.com/releases/v5.6.1/css/all.css'); */
-.sidebar-container {
-  margin: 0 auto;
-  /* min-height: 100vh; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 15px;
-}
-
+/* ここから店舗メッセージの吹き出しスタイル */
 .store_message {
   position: relative;
   padding: 1.5rem 2rem;
@@ -306,7 +247,7 @@ h3:before {
   left: 1em;
   width: 0;
   height: 0;
-  content: '';
+  content: "";
   border-width: 14px 12px 0 12px;
   border-style: solid;
   border-color: #d8d8d8 transparent transparent transparent;
@@ -318,7 +259,7 @@ h3:before {
   left: 1em;
   width: 0;
   height: 0;
-  content: '';
+  content: "";
   border-width: 14px 12px 0 12px;
   border-style: solid;
   border-color: #f9f9f9 transparent transparent transparent;

@@ -25,7 +25,8 @@ export default {
   plugins: [
     { src: "~/plugins/vue-js-modal", ssr: false },
     { src: '~/plugins/vue-sidebar-menu', mode: 'client'},
-    { src: '~/plugins/vue2-google-maps.js' }
+    { src: '~/plugins/vue2-google-maps.js' },
+    { src: '~/plugins/utils' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

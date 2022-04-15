@@ -1,10 +1,9 @@
 <!-- pages/index.vue -->
 <template>
-  <section class="container">
+  <section class="container" @click="reset()">
+    <Slidevar001/>
     <div class="top-title">Title Area!!!!</div>
-    <div class="sidebar-container">
-      <sidebar-menu :menu="menu" :width="'60px'" :widthCollapsed="'60px'" />
-    </div>
+
     <h1>アプリの使い方</h1>
     <ul>
       <li>左のサイドメニューから閲覧したい情報を選んでください</li>
@@ -42,10 +41,7 @@
     </div>
 
     <div class="weather" @click="show()">
-      <a class="btn btn-custom01">
-        <span class="btn-custom01-front">天気予報</span>
-        <i class="fas fa-angle-right fa-position-right"></i>
-      </a>
+      <WeatherSwitch />
     </div>
 
     <modal name="modal-content" :width="600" :height="900">
@@ -73,7 +69,7 @@ export default {
     // リクエスト（Post）
     const response = await $axios.$post(url, params);
     // 配列で返ってくるのでJSONにして返却
-    console.log(response);
+    // console.log(response);
     return {
       comments: response.Items,
     };
@@ -82,54 +78,7 @@ export default {
   data: () => {
     return {
       content: "",
-      // TODO: サイドメニュー、コンポーネントにしたい
-      menu: [
-        {
-          header: true,
-          title: "Main Navigation",
-          hiddenOnCollapse: true,
-          hidden: true,
-        },
-        { href: "/sandbox", title: "", icon: "" },
-        { href: "/sandbox", title: "", icon: "" },
-        { href: "/sandbox", title: "", icon: "" },
-        { href: "/sandbox", title: "", icon: "" },
-        { href: "/sandbox", title: "", icon: "" },
-        { href: "/sandbox", title: "", icon: "" },
-        { href: "/sandbox", title: "", icon: "" },
-        {
-          href: "/",
-          title: "",
-          icon: "fas fa-tablet-alt fa-2x",
-        },
-        {
-          href: "/store/v2",
-          title: "",
-          icon: "fas fa-beer fa-2x",
-        },
-        {
-          href: "/store/map",
-          title: "",
-          icon: "far fa-map fa-2x",
-        },
-        {
-          href: "/todo",
-          title: "",
-          icon: "fa fa-user fa-2x",
-        },
-        {
-          href: "/store",
-          title: "",
-          icon: "fa fa-chart-area fa-2x",
-        },
-        // TODO: 多分コンポーネントにする場合は以下のように記載する？
-        // {
-        //   component: componentName,
-        //   // props: componentProps
-        //   // hidden: false
-        //   // hiddenOnCollapse: true
-        // },
-      ],
+      t: 0,
     };
   },
   computed: {},
@@ -140,6 +89,19 @@ export default {
     hide() {
       this.$modal.hide("modal-content");
     },
+    countStart() {
+      this.$count();
+    },
+    reset() {
+      this.$reset();
+    }
+  },
+  mounted() {
+    window.onload = () => {
+      // alert("ページが読み込まれました！");
+      console.log("画面処理開始");
+      this.countStart();
+    };
   },
 };
 </script>
@@ -147,17 +109,6 @@ export default {
 <style scoped>
 .container {
   padding: 100px;
-}
-/* サイドメニューのスタイル */
-/* @import url('https://use.fontawesome.com/releases/v5.6.1/css/all.css'); */
-.sidebar-container {
-  margin: 0 auto;
-  /* min-height: 100vh; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 15px;
 }
 
 /* リストデザイン佣 */
@@ -196,7 +147,7 @@ ul li:before {
 /* 天気予報ボタンの位置 */
 .weather {
   position: fixed;
-  bottom: 50px;
+  top: 100px;
   right: 50px;
   width: 30%;
   padding: 5px;
@@ -230,130 +181,6 @@ ul li:before {
 
 .round_btn::after {
   transform: translate(-50%, -50%) rotate(-45deg);
-}
-/* 天気予報ボタンのデザイン */
-/* TODO:　コードが長くなってしまったのでそのうちCSSの共通化かコンポーネント化する */
-.btn,
-a.btn,
-button.btn {
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1.5;
-  position: relative;
-  display: inline-block;
-  padding: 1rem 4rem;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  text-align: center;
-  vertical-align: middle;
-  text-decoration: none;
-  letter-spacing: 0.1em;
-  color: #212529;
-  border-radius: 0.5rem;
-}
-
-a.btn-custom01 {
-  margin-bottom: 0.5rem;
-  padding: 0;
-  border-radius: 0.75rem;
-}
-
-a.btn-custom01:before {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  width: 100%;
-  height: 100%;
-
-  content: "";
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  -webkit-transform: translate3d(0, 0.75rem, -1rem);
-  transform: translate3d(0, 0.75rem, -1rem);
-
-  border: 2px solid #000;
-  border-radius: inherit;
-  background: #ccc100;
-  -webkit-box-shadow: 0 0.6rem 0 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0.6rem 0 0 rgba(0, 0, 0, 0.2);
-}
-
-a.btn-custom01:after {
-  font-family: "Font Awesome 5 Free";
-  font-size: 2rem;
-  font-weight: normal;
-  line-height: 1;
-  position: absolute;
-  top: calc(50% - 1rem);
-  left: 1.5rem;
-  margin: 0;
-  padding: 0;
-  content: "\f0e0";
-}
-
-.btn-custom01-front {
-  position: relative;
-  display: block;
-  padding: 1.5rem 5rem 1.5rem 5rem;
-
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 2px solid #000;
-  border-radius: inherit;
-  background: #fff100;
-}
-
-.fa-position-left {
-  position: absolute;
-  top: calc(50% - 0.5em);
-  left: 1rem;
-}
-
-.fa-position-right {
-  position: absolute;
-  top: calc(50% - 0.5em);
-  right: 1rem;
-}
-
-a.btn-custom01:hover {
-  -webkit-transform: translate(0, 0.25rem);
-  transform: translate(0, 0.25rem);
-  background: #fff100;
-}
-
-a.btn-custom01:hover:before {
-  -webkit-transform: translate3d(0, 0.5rem, -1rem);
-  transform: translate3d(0, 0.5rem, -1rem);
-  -webkit-box-shadow: 0 0.35rem 0 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0.35rem 0 0 rgba(0, 0, 0, 0.2);
-}
-
-a.btn-custom01:hover:after {
-  content: "\f2b6";
-}
-
-a.btn-custom01:active {
-  -webkit-transform: translate(0rem, 0.75rem);
-  transform: translate(0rem, 0.75rem);
-}
-
-a.btn-custom01:active:before {
-  -webkit-transform: translate3d(0, 0, -1rem);
-  transform: translate3d(0, 0, -1rem);
-  -webkit-box-shadow: 0 0.35rem 0 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0.35rem 0 0 rgba(0, 0, 0, 0.2);
-}
-
-a.btn-custom01:active:after {
-  content: "\f2b6";
 }
 
 /* アコーディオン部品のスタイル */
@@ -539,18 +366,24 @@ a.btn-custom01:active:after {
   color: #7c7c7c;
 }
 
-
-
-@keyframes typing { from { width: 0; } }
-@keyframes caret { 50% { border-color: transparent; } }
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+@keyframes caret {
+  50% {
+    border-color: transparent;
+  }
+}
 
 .top-title {
-font-family: monospace; 
-width: 11ch;
-border-right: .08em solid;
-overflow: hidden;
-font-size: 4em;
-white-space: nowrap;
-animation: typing 5s steps(11, end), caret .5s step-end infinite;
+  font-family: monospace;
+  width: 11ch;
+  border-right: 0.08em solid;
+  overflow: hidden;
+  font-size: 4em;
+  white-space: nowrap;
+  animation: typing 5s steps(11, end), caret 0.5s step-end infinite;
 }
 </style>

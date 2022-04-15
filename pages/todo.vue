@@ -1,9 +1,7 @@
 <!-- pages/index.vue -->
 <template>
   <section class="container">
-    <div class="sidebar-container">
-      <sidebar-menu :menu="menu" :width="'60px'" :widthCollapsed="'60px'" />
-    </div>
+    <Slidevar001/>
     <h1>アプリの使い方</h1>
     <ul>
       <li>左のサイドメニューから閲覧したい情報を選んでください</li>
@@ -83,54 +81,6 @@ export default {
   data: () => {
     return {
       content: "",
-      // TODO: サイドメニュー、コンポーネントにしたい
-      menu: [
-        {
-          header: true,
-          title: "Main Navigation",
-          hiddenOnCollapse: true,
-          hidden: true,
-        },
-        { href: "/sandbox", title: "", icon: "", },
-        { href: "/sandbox", title: "", icon: "", },
-        { href: "/sandbox", title: "", icon: "", },
-        { href: "/sandbox", title: "", icon: "", },
-        { href: "/sandbox", title: "", icon: "", },
-        { href: "/sandbox", title: "", icon: "", },
-        { href: "/sandbox", title: "", icon: "", },
-        {
-          href: "/",
-          title: "",
-          icon: "fas fa-tablet-alt fa-2x",
-        },
-        {
-          href: "/store/v2",
-          title: "",
-          icon: "fas fa-beer fa-2x",
-        },
-        {
-          href: "/store/map",
-          title: "",
-          icon: "far fa-map fa-2x",
-        },
-        {
-          href: "/todo",
-          title: "",
-          icon: "fa fa-user fa-2x",
-        },
-        {
-          href: "/store",
-          title: "",
-          icon: "fa fa-chart-area fa-2x",
-        },
-        // TODO: 多分コンポーネントにする場合は以下のように記載する？
-        // {
-        //   component: componentName,
-        //   // props: componentProps
-        //   // hidden: false
-        //   // hiddenOnCollapse: true
-        // },
-      ],
     };
   },
   //   mounted: () => {
@@ -166,17 +116,6 @@ export default {
 <style scoped>
 .container {
   padding: 100px;
-}
-/* サイドメニューのスタイル */
-/* @import url('https://use.fontawesome.com/releases/v5.6.1/css/all.css'); */
-.sidebar-container {
-  margin: 0 auto;
-  /* min-height: 100vh; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 100px;
 }
 
 /* リストデザイン佣 */
