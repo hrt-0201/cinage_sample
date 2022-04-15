@@ -17,8 +17,13 @@ const reset = () => {
   t = 0;
 };
 
+const func1 = () => {
+  document.location.reload();
+}
+
 export default ({}, inject) => {
   inject("start_view", start_view);
   inject("count", count);
   inject("reset", reset);
+  inject("func1", func1);
 };

@@ -50,16 +50,23 @@
 <script>
 export default {
   async asyncData({ $axios }) {
+    console.log('########## 1')
     const params = {
       OperationType: "COMMENT",
     };
+    console.log('########## 2')
     // 取得先のURL
     const url =
       "https://pjle7dwta5.execute-api.ap-northeast-1.amazonaws.com/APITest02/dynamodbctrl";
+    console.log('########## 3')
     // リクエスト（Post）
-    const response = await $axios.$post(url, params);
+    const response = await $axios.$post(url, params).catch(function(error) {
+        // エラー時の処理を書く
+        console.log('ERROR!')
+    });
+    console.log('########## 4')
     // 配列で返ってくるのでJSONにして返却
-    // console.log(response);
+    console.log(response);
     return {
       comments: response.Items,
     };
