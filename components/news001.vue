@@ -1,5 +1,6 @@
 <template>
-    <div class="switch_content">
+  <div class="switch_content">
+    <!-- <div v-for="(post, index) in this.posts" :key="index"> -->
       <input id="switch" type="checkbox" />
       <label class="button" for="switch">
         <span class="icon"></span>
@@ -11,12 +12,13 @@
         <p>hogehogehoge</p>
       </div>
     </div>
+  <!-- </div> -->
 </template>
 
 <script>
 export default {
-  name: 'News001'
-}
+  name: "News001",
+};
 </script>
 
 <style scoped>
@@ -105,5 +107,4 @@ export default {
 #switch:checked ~ .contents {
   display: block; /* コンテンツを表示 */
 }
-
 </style>

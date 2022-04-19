@@ -1,7 +1,9 @@
 <template>
+<client-only>
     <div class="sidebar-container">
       <sidebar-menu :menu="menu" :width="'60px'" :widthCollapsed="'60px'" />
     </div>
+</client-only>
 </template>
 
 <script>
@@ -32,6 +34,11 @@ export default {
           href: "/store/v2",
           title: "",
           icon: "fas fa-beer fa-2x",
+        },
+        {
+          href: "/store/v3",
+          title: "",
+          icon: "fas fa-glass-cheers fa-2x",
         },
         {
           href: "/store/map",

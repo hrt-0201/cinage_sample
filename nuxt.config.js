@@ -26,7 +26,8 @@ export default {
     { src: "~/plugins/vue-js-modal", ssr: false },
     { src: '~/plugins/vue-sidebar-menu', mode: 'client'},
     { src: '~/plugins/vue2-google-maps.js' },
-    { src: '~/plugins/utils' }
+    { src: '~/plugins/utils' },
+    { src: '~/plugins/vueQrcode' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -38,7 +39,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/axios',
+    '@nuxtjs/axios'
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

@@ -53,7 +53,7 @@
     <div>
       <ul>
         <li v-for="(post, index) in posts" :key="index">
-          <a :href="'post.url'" target="_blank" rel="noopener noreferrer">{{
+          <a :href="post.url" target="_blank" rel="noopener noreferrer">{{
             post.title
           }}</a>
         </li>
@@ -74,7 +74,7 @@ export default {
     // 配列で返ってくるのでJSONにして返却
     console.log(response);
     return {
-      posts: response,
+      posts: response.slice(0, 10),
     };
   },
 
