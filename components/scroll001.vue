@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "Scroll",
+  name: "Scroll001",
 };
 </script>
 

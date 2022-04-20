@@ -1,0 +1,35 @@
+<template>
+  <div>
+    <p class="fadeIn">{{message}}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ["message"],
+  name: "Title005",
+};
+</script>
+
+<style scoped>
+.fadeIn {
+animation-name: fadeInAnime;/*1で解説*/
+animation-fill-mode:backwards;/*2で解説*/
+animation-duration:3s;/*3で解説*/
+animation-iteration-count:infinite;/*4で解説*/
+animation-timing-function:ease;/*5で解説*/
+animation-delay: 0.5s;/*6で解説*/
+animation-direction:normal;/*7で解説*/
+}
+
+/*1で解説*/
+@keyframes fadeInAnime{
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+</style>

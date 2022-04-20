@@ -51,22 +51,18 @@
             <!-- 以下がモーダル画面のエリア -->
             <modal
               :name="'modal-content' + index"
-              :width="600"
-              :height="900"
+              :width="800"
+              height=auto
               :adaptive="true"
             >
               <!-- モーダルの閉じるボタン -->
               <div @click="hide(index)" class="round_btn"></div>
               <div class="newsInfo">
-                <span v-if="post.custom">
-                  <p class="modal-img">
-                    <img :src="post.custom.image" alt="" />
-                  </p>
+                <span v-if="post.custom" class="modal-img">
+                  <img :src="post.custom.image" alt="" />
                 </span>
-                <span v-else>
-                  <p class="modal-img">
-                    <img src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/logo/noimage.png" alt="" />
-                  </p>
+                <span v-else class="modal-img">
+                  <img src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/logo/noimage.png" alt="" />
                 </span>
                 <h3>{{ post.title }}</h3>
                 <p class="card-text">

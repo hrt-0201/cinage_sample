@@ -10,13 +10,13 @@
       <div class="bl_media_item">
         <div class="img">
           <div v-if="post.manage.seat == '01'">
-            <div class="store-image"><img :src="post.store_image_url" alt="" /></div>
+            <Store-image-vacancy :store_image_url=post.store_image_url />
           </div>
           <div v-if="post.manage.seat == '02'">
-            <div class="store-image"><img :src="post.store_image_url" alt="" /></div>
+            <Store-image-normal :store_image_url=post.store_image_url />
           </div>
           <div v-if="post.manage.seat == '03'">
-            <div class="store-image"><img :src="post.store_image_url" alt="" /></div>
+            <Store-image-crowded :store_image_url=post.store_image_url />
           </div>
         </div>
         <!-- お店詳細を別画面にする場合は以下を活性化する -->
@@ -27,7 +27,7 @@
         <modal
           :name="'modal-content' + post.store_id"
           :width="600"
-          :height="900"
+          height=auto
           :adaptive="true"
         >
           <!-- モーダルの閉じるボタン -->
@@ -50,11 +50,9 @@
           </div>
           <div v-for="(comment, index) in comments" :key="index">
             <div v-if="comment.store_id == post.store_id">
-              <div class="store_message">
-                <p>{{ comment.comment }}</p>
-                <div class="comment-date">
-                  投稿日時：{{ comment.update_date }}
-                </div>
+              <Caption002 :message="comment.comment" />
+              <div class="comment-date">
+                投稿日時：{{ comment.update_date }}
               </div>
             </div>
           </div>
@@ -65,7 +63,9 @@
 </template>
 
 <script>
+import storeImageCrowded from '../../components/store-image-crowded.vue';
 export default {
+  components: { storeImageCrowded },
   async asyncData({ $axios }) {
     const params = {
       OperationType: "SCAN",
@@ -190,24 +190,6 @@ h3:before {
   color: red;
   font-weight: 1000;
 }
-/* 画像にかぶせる混雑状況のスタイリング */
-.store-image{
-  position: relative;
-  background-color: aliceblue;
-  width: 100%;
-  max-width: 384px;
-  margin: 60px auto;
-  aspect-ratio: 16/9;
-}
-
-.store-image::before{
-    position: absolute;
-    content: "空席";
-    top: 0;
-    right: 0;
-    background-color: crimson;
-    padding: 5px 25px;
-}
 
 .bl_media_item .cardlink {
   display: block;
@@ -247,37 +229,5 @@ h3:before {
 
 .round_btn::after {
   transform: translate(-50%, -50%) rotate(-45deg);
-}
-
-/* ここから店舗メッセージの吹き出しスタイル */
-.store_message {
-  position: relative;
-  padding: 1.5rem 2rem;
-  border: 3px solid #d8d8d8;
-  border-radius: 10px;
-  background: #f9f9f9;
-}
-.store_message:before {
-  position: absolute;
-  bottom: -14px;
-  left: 1em;
-  width: 0;
-  height: 0;
-  content: "";
-  border-width: 14px 12px 0 12px;
-  border-style: solid;
-  border-color: #d8d8d8 transparent transparent transparent;
-}
-
-.store_message:after {
-  position: absolute;
-  bottom: -10px;
-  left: 1em;
-  width: 0;
-  height: 0;
-  content: "";
-  border-width: 14px 12px 0 12px;
-  border-style: solid;
-  border-color: #f9f9f9 transparent transparent transparent;
 }
 </style>
