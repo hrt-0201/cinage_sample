@@ -19,6 +19,7 @@
   </v-row> -->
   <div>
     <Slidevar001 />
+
     <div class="map-view">
       <h2>近辺地図</h2>
       <div class="boxContainer">
@@ -42,6 +43,7 @@
         </div>
       </div>
     </div>
+    <Popup-menu />
   </div>
 </template>
 

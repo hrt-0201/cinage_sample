@@ -18,6 +18,7 @@
     </ul> -->
 
     <h2>◇コンポーネント群</h2>
+    
     <p>############################################################################</p>
     <br>
     <Line001 />
@@ -116,7 +117,7 @@
         <li class="nestlistli">全体に反映させたいCSSはnuxt.config.jsに定義する</li>
       </ul>
     </ul>
-
+    <Popup-menu />
   </div>
 </template>
 
@@ -151,6 +152,7 @@ export default {
 p {
   font-size: 3px;
 }
+
 .store_info {
   padding: 100px;
 }

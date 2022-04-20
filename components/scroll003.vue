@@ -204,7 +204,7 @@ export default {
 }
 .wrapper {
   width: 100%;
-  height: 10vh;
+  height: 15vh;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;

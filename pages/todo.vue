@@ -2,6 +2,7 @@
 <template>
   <section class="container">
     <Slidevar001/>
+
     <h1>アプリの使い方</h1>
     <ul>
       <li>左のサイドメニューから閲覧したい情報を選んでください</li>
@@ -59,6 +60,7 @@
         </li>
       </ul>
     </div>
+    <Popup-menu />
   </section>
 </template>
 

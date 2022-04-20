@@ -2,6 +2,7 @@
   <div class="news-base">
     <Slidevar001 />
     <Title004 message="Today News!!!" />
+
     <!-- {{ this.messages }}
     <div @click="reload()">reload</div> -->
 
@@ -77,6 +78,7 @@
         </div>
       </div>
     </div>
+    <Popup-menu />
   </div>
 </template>
 

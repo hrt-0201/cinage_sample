@@ -5,6 +5,7 @@
     <video class="ad" autoplay loop muted playsinline>
       <source src="/cat.mp4" />
     </video>
+    <Popup-menu />
   </div>
 </template>
 
