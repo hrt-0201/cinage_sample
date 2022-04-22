@@ -10,13 +10,13 @@
       <div class="bl_media_item">
         <div class="img">
           <div v-if="post.manage.seat == '01'">
-            <Store-image-vacancy :store_image_url=post.store_image_url />
+            <Store-image-vacancy :store_image_url=post.food_image_url />
           </div>
           <div v-if="post.manage.seat == '02'">
-            <Store-image-normal :store_image_url=post.store_image_url />
+            <Store-image-normal :store_image_url=post.food_image_url />
           </div>
           <div v-if="post.manage.seat == '03'">
-            <Store-image-crowded :store_image_url=post.store_image_url />
+            <Store-image-crowded :store_image_url=post.food_image_url />
           </div>
         </div>
         <!-- お店詳細を別画面にする場合は以下を活性化する -->

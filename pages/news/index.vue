@@ -53,24 +53,36 @@
             <modal
               :name="'modal-content' + index"
               :width="800"
-              height=auto
+              height="auto"
               :adaptive="true"
             >
               <!-- モーダルの閉じるボタン -->
               <div @click="hide(index)" class="round_btn"></div>
               <div class="newsInfo">
-                <span v-if="post.custom" class="modal-img">
-                  <img :src="post.custom.image" alt="" />
-                </span>
-                <span v-else class="modal-img">
-                  <img src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/logo/noimage.png" alt="" />
-                </span>
-                <h3>{{ post.title }}</h3>
-                <p class="card-text">
-                  {{ post.description }}
-                </p>
-                <h6>↓さらに詳しい記事は以下のQRコードを読み込んでください</h6>
-                <qrcode :value="post.link" :options="{ width: 300 }" />
+                <div class="d-flex">
+                  <span v-if="post.custom" class="modal-img">
+                    <img :src="post.custom.image" alt="" />
+                  </span>
+                  <span v-else class="modal-img">
+                    <img
+                      src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/logo/noimage.png"
+                      alt=""
+                    />
+                  </span>
+                  <div class="modal-text-area">
+                    <div class="modal-title"><Caption005 :message="post.title" /></div>
+                    <span class="modal-text">
+                      {{ post.description }}
+                    </span>
+                  </div>
+                </div>
+                <div class="d-flex modal-qr-area">
+                  <qrcode :value="post.link" :options="{ width: 200 }" />
+                  <div>
+                  <h6>👈さらに詳しい内容は左のQRコードを読み込んでください</h6>
+                  <img src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/logo/smartphone_qr_code_man.png" />
+                  </div>
+                </div>
               </div>
             </modal>
           </div>
@@ -168,14 +180,6 @@ export default {
         rel: "stylesheet",
         href: "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css",
       },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css?family=Open+Sans:400,500&amp;subset=latin-ext",
-      },
-      {
-        rel: "stylesheet",
-        href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
-      },
     ],
   },
   computed: {},
@@ -271,7 +275,7 @@ export default {
   display: block;
   position: relative;
   top: 10px;
-  left: 540px;
+  left: 740px;
   width: 50px;
   height: 50px;
   border-radius: 50%; /* 丸みの度合い */
@@ -295,5 +299,37 @@ export default {
 
 .round_btn::after {
   transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.modal-text-area {
+  padding-top: 20px;
+  padding-right: 20px;
+}
+.modal-title {
+  padding-right: 20px;
+}
+.modal-text {
+  padding-top: 20px;
+  background: linear-gradient(transparent 90%, #ffff66 60%);
+}
+.modal-img img {
+  width: 300px;
+  height: 300px;
+  padding: 10px;
+  vertical-align: bottom;
+  object-fit: cover;
+}
+.modal-qr-area {
+  padding-left: 100px;
+}
+.modal-qr-area h6 {
+  padding-top: 20px;
+  padding-left: 10px;
+  width: 300px;
+}
+.modal-qr-area img {
+  /* padding-top: 20px; */
+  padding-left: 100px;
+  width: 250px;
 }
 </style>
