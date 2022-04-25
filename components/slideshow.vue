@@ -82,9 +82,19 @@ export default {
 
 /* ------ hero erea ------- */
 .hero {
-  height: 50vh;
+  height: 30vh;
   overflow: hidden;
   position: relative;
+}
+@media (max-height: 1000px) {
+  .hero {
+    height: 50vh;
+  }
+}
+@media (max-height: 2000px) {
+  .hero {
+    height: 30vh;
+  }
 }
 
 .hero__inner {

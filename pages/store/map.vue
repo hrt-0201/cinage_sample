@@ -17,7 +17,7 @@
       </v-card>
     </v-col>
   </v-row> -->
-  <div>
+  <div class="map-base">
     <Slidevar001 />
 
     <div class="map-view">
@@ -68,6 +68,10 @@ export default {
 </script>
 
 <style scoped>
+.map-base {
+  background-color: #999999;
+  height: 100vh;
+}
 .map-view {
   padding: 100px;
 }

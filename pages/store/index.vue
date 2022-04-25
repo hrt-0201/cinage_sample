@@ -1,5 +1,5 @@
 <template>
-  <div class="store_info">
+  <div class="base">
     <Slidevar001/>
     <h1>サンドボックスの部屋</h1>
 
@@ -152,12 +152,13 @@ export default {
 </script>
 
 <style scoped>
+.base {
+  background-color: #999999;
+  width: 100vw;
+  padding: 100px;
+}
 p {
   font-size: 3px;
-}
-
-.store_info {
-  padding: 100px;
 }
 /* ul {
   display: flex;

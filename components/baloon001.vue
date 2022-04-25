@@ -25,6 +25,7 @@ export default {
 /* 全体の設定 */
 .balloon01 {
   width: 100%;
+  color: #000000;
   margin: 1.5em 0;
   overflow: hidden;
   animation-name: fadeUpAnime; /*アニメーションの定義名*/

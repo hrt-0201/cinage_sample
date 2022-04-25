@@ -27,6 +27,8 @@ export default {
 .switch_content {
   width: 400px; /* 全体の幅 */
   border: 1px solid #333; /* 全体を囲む枠線 */
+  background-color: #ffffff;
+  color:#000;
 }
 
 #switch {

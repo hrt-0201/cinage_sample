@@ -200,6 +200,7 @@ export default {
 <style scoped>
 .news-base {
   padding-left: 80px;
+  background-color: #999999;
 }
 
 /* 記事一覧のCSS（いっそのこと一覧事態をコンポーネント化したほうが後々よさそう） */

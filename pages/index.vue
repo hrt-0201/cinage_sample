@@ -15,6 +15,8 @@
     <h1>最新のニュース</h1>
     <News001 />
 
+    <a href="https://master.d2m7f89l829cfb.amplifyapp.com/">AWS Amplify環境はこちらから</a>
+
     <h1>お店の最新のつぶやき</h1>
     <div v-for="comment in comments" :key="comment.update_date">
       <Baloon001 :store_image_url="comment.store_image_url" :store_name="comment.store_name" :comment="comment.comment" :update_date="comment.update_date" />
@@ -92,6 +94,10 @@ export default {
 
 <style scoped>
 .container {
+  height: 1000vh;
+  width: 100vw;
+  background-color: #999999;
+  color: #ffffcc;
   padding-top: 0px;
   padding-left: 100px;
   padding-right: 100px;
@@ -103,6 +109,7 @@ ul {
 }
 
 ul li {
+  width: 80vw;
   color: black;
   position: relative;
   background: #f1f8ff; /*バーの色*/
@@ -121,7 +128,7 @@ ul li:before {
   padding: 0.5em;
   width: 1.2em;
   color: white; /*アイコン色*/
-  font-weight: normal; /*アイコンは太字にしない*/
+  font-weight: 600; /*アイコンは太字にしない*/
   text-align: center;
   left: -35px; /*左端からのアイコンまでの距離*/
   /*以下 上下中央寄せのため*/

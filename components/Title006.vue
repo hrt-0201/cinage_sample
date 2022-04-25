@@ -30,7 +30,7 @@ body {
 .first,
 .second,
 .third {
-  height: 30vh;
+  height: 15vh;
   width: 100vw;
 }
 .first,
@@ -43,7 +43,7 @@ body {
   opacity: 0;
 }
 .holder {
-  height: 30vh;
+  height: 16vh;
   position: relative;
   z-index: 1;
 }
@@ -173,7 +173,7 @@ body {
 }
 
 .txt {
-  margin-top: calc(50vh - 273px);
+  margin-top: calc(25vh - 400px);
   position: absolute;
   padding-left: 50px;
   width: 100%;

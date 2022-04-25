@@ -118,6 +118,9 @@ export default {
 <style scoped>
 .container {
   padding: 100px;
+  height: 100vh;
+  background-color: #999999;
+  color: #ffffcc;
 }
 
 /* リストデザイン佣 */
@@ -139,12 +142,12 @@ ul li {
 ul li:before {
   font-family: "Font Awesome 5 Free";
   content: "\f303";
+  font-weight: 900;
   position: absolute;
   display: block;
   padding: 0.5em;
   width: 1.2em;
   color: white; /*アイコン色*/
-  font-weight: normal;/*アイコンは太字にしない*/
   text-align: center;
   left : -35px; /*左端からのアイコンまでの距離*/
   /*以下 上下中央寄せのため*/

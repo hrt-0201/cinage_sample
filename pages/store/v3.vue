@@ -1,70 +1,72 @@
 <template>
-  <div class="bl_media_container">
-    <Slidevar001 />
+  <div class="store-info-base">
+    <div class="bl_media_container">
+      <Slidevar001 />
 
-    <div
-      class="bl_media_itemWrapper"
-      v-for="(post, index) in posts"
-      :key="index"
-    >
-      <div class="bl_media_item">
-        <div class="img">
-          <div v-if="post.manage.seat == '01'">
-            <Store-image-vacancy :store_image_url=post.food_image_url />
-          </div>
-          <div v-if="post.manage.seat == '02'">
-            <Store-image-normal :store_image_url=post.food_image_url />
-          </div>
-          <div v-if="post.manage.seat == '03'">
-            <Store-image-crowded :store_image_url=post.food_image_url />
-          </div>
-        </div>
-        <!-- お店詳細を別画面にする場合は以下を活性化する -->
-        <!-- <nuxt-link :to="post.store_id" class="cardlink"></nuxt-link> -->
-        <div @click="show(post.store_id)" class="cardlink"></div>
-        <!-- <button @click="show(post.store_id)" class="cardlink">クリックする</button> -->
-        <!-- 以下がモーダル画面のエリア -->
-        <modal
-          :name="'modal-content' + post.store_id"
-          :width="600"
-          height=auto
-          :adaptive="true"
-        >
-          <!-- モーダルの閉じるボタン -->
-          <div @click="hide(post.store_id)" class="round_btn"></div>
-          <div class="storeInfo">
-            <p class="img">
-              <img :src="post.store_image_url" alt="" />
-            </p>
-            <h3>{{ post.store_name }}</h3>
-            <p>定休日：{{ post.info.holiday }}</p>
-            <p>営業時間：{{ post.info.time }}</p>
-            <p>住所：{{ post.address }}</p>
-            <p>詳細：{{ post.description }}</p>
-          </div>
-          <div class="congestion">
-            <p>混雑状況</p>
-            <p v-if="post.manage.seat == '01'" class="vacancy">空席</p>
-            <p v-if="post.manage.seat == '02'" class="normal">普通</p>
-            <p v-if="post.manage.seat == '03'" class="crowded">混雑</p>
-          </div>
-          <div v-for="(comment, index) in comments" :key="index">
-            <div v-if="comment.store_id == post.store_id">
-              <Caption002 :message="comment.comment" />
-              <div class="comment-date">
-                投稿日時：{{ comment.update_date }}
-              </div>
+      <div
+        class="bl_media_itemWrapper"
+        v-for="(post, index) in posts"
+        :key="index"
+      >
+        <div class="bl_media_item">
+          <div class="img">
+            <div v-if="post.manage.seat == '01'">
+              <Store-image-vacancy :store_image_url="post.food_image_url" />
+            </div>
+            <div v-if="post.manage.seat == '02'">
+              <Store-image-normal :store_image_url="post.food_image_url" />
+            </div>
+            <div v-if="post.manage.seat == '03'">
+              <Store-image-crowded :store_image_url="post.food_image_url" />
             </div>
           </div>
-        </modal>
+          <!-- お店詳細を別画面にする場合は以下を活性化する -->
+          <!-- <nuxt-link :to="post.store_id" class="cardlink"></nuxt-link> -->
+          <div @click="show(post.store_id)" class="cardlink"></div>
+          <!-- <button @click="show(post.store_id)" class="cardlink">クリックする</button> -->
+          <!-- 以下がモーダル画面のエリア -->
+          <modal
+            :name="'modal-content' + post.store_id"
+            :width="600"
+            height="auto"
+            :adaptive="true"
+          >
+            <!-- モーダルの閉じるボタン -->
+            <div @click="hide(post.store_id)" class="round_btn"></div>
+            <div class="storeInfo">
+              <p class="img">
+                <img :src="post.store_image_url" alt="" />
+              </p>
+              <h3>{{ post.store_name }}</h3>
+              <p>定休日：{{ post.info.holiday }}</p>
+              <p>営業時間：{{ post.info.time }}</p>
+              <p>住所：{{ post.address }}</p>
+              <p>詳細：{{ post.description }}</p>
+            </div>
+            <div class="congestion">
+              <p>混雑状況</p>
+              <p v-if="post.manage.seat == '01'" class="vacancy">空席</p>
+              <p v-if="post.manage.seat == '02'" class="normal">普通</p>
+              <p v-if="post.manage.seat == '03'" class="crowded">混雑</p>
+            </div>
+            <div v-for="(comment, index) in comments" :key="index">
+              <div v-if="comment.store_id == post.store_id">
+                <Caption002 :message="comment.comment" />
+                <div class="comment-date">
+                  投稿日時：{{ comment.update_date }}
+                </div>
+              </div>
+            </div>
+          </modal>
+        </div>
       </div>
+      <Popup-menu />
     </div>
-    <Popup-menu />
   </div>
 </template>
 
 <script>
-import storeImageCrowded from '../../components/store-image-crowded.vue';
+import storeImageCrowded from "../../components/store-image-crowded.vue";
 export default {
   components: { storeImageCrowded },
   async asyncData({ $axios }) {
@@ -122,6 +124,10 @@ img {
   height: 300px;
   vertical-align: bottom;
   object-fit: cover;
+}
+.store-info-base {
+  background-color: #999999;
+  height: 100vh;
 }
 /* ここからカードレイアウトのスタイリング */
 /* PC　3カラム */
