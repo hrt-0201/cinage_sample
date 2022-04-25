@@ -1,22 +1,50 @@
 <template>
-  <div class="store-info-base">
-    <div class="bl_media_container">
-      <Slidevar001 />
-      <div
-        class="bl_media_itemWrapper"
-        v-for="(post, index) in posts"
-        :key="index"
-      >
-        <div class="bl_media_item">
-          <p class="img">
-            <img :src="post.store_image_url" alt="" />
-          </p>
-          <!-- お店詳細を別画面にする場合は以下を活性化する -->
-          <!-- <nuxt-link :to="post.store_id" class="cardlink"></nuxt-link> -->
-          <div @click="show(post.store_id)" class="cardlink"></div>
+<div class="store-info-base">
+  <div class="bl_media_container">
+    <Slidevar001/>
+    
+
+    <div
+      class="bl_media_itemWrapper"
+      v-for="(post, index) in posts"
+      :key="index"
+    >
+      <div class="bl_media_item">
+        <p class="img">
+          <img :src="post.store_image_url" alt="" />
+        </p>
+        <!-- お店詳細を別画面にする場合は以下を活性化する -->
+        <!-- <nuxt-link :to="post.store_id" class="cardlink"></nuxt-link> -->
+        <div @click="show(post.store_id)" class="cardlink"></div>
+        <div class="storeInfo">
+          <h3>{{ post.store_name }}</h3>
+          <p>TODO:ここに現在時間と定休日から現在営業中かを表示</p>
+        </div>
+        <div class="congestion">
+          <p>混雑状況</p>
+          <p v-if="post.manage.seat == '01'" class="vacancy">空席</p>
+          <p v-if="post.manage.seat == '02'" class="normal">普通</p>
+          <p v-if="post.manage.seat == '03'" class="crowded">混雑</p>
+        </div>
+        <!-- <button @click="show(post.store_id)" class="cardlink">クリックする</button> -->
+        <!-- 以下がモーダル画面のエリア -->
+        <modal
+          :name="'modal-content' + post.store_id"
+          :width="600"
+          :height="900"
+          :adaptive="true"
+        >
+          <!-- モーダルの閉じるボタン -->
+          <div @click="hide(post.store_id)" class="round_btn"></div>
           <div class="storeInfo">
+            <p class="img">
+              <img :src="post.store_image_url" alt="" />
+            </p>
             <h3>{{ post.store_name }}</h3>
-            <p>TODO:ここに現在時間と定休日から現在営業中かを表示</p>
+            <p>定休日：{{ post.info.holiday }}</p>
+            <p>営業時間：{{ post.info.time }}</p>
+            <p>住所：{{ post.address }}</p>
+            <p>詳細：{{ post.description }}</p>
           </div>
           <div class="congestion">
             <p>混雑状況</p>
@@ -24,47 +52,21 @@
             <p v-if="post.manage.seat == '02'" class="normal">普通</p>
             <p v-if="post.manage.seat == '03'" class="crowded">混雑</p>
           </div>
-          <!-- <button @click="show(post.store_id)" class="cardlink">クリックする</button> -->
-          <!-- 以下がモーダル画面のエリア -->
-          <modal
-            :name="'modal-content' + post.store_id"
-            :width="600"
-            :height="900"
-            :adaptive="true"
-          >
-            <!-- モーダルの閉じるボタン -->
-            <div @click="hide(post.store_id)" class="round_btn"></div>
-            <div class="storeInfo">
-              <p class="img">
-                <img :src="post.store_image_url" alt="" />
-              </p>
-              <h3>{{ post.store_name }}</h3>
-              <p>定休日：{{ post.info.holiday }}</p>
-              <p>営業時間：{{ post.info.time }}</p>
-              <p>住所：{{ post.address }}</p>
-              <p>詳細：{{ post.description }}</p>
-            </div>
-            <div class="congestion">
-              <p>混雑状況</p>
-              <p v-if="post.manage.seat == '01'" class="vacancy">空席</p>
-              <p v-if="post.manage.seat == '02'" class="normal">普通</p>
-              <p v-if="post.manage.seat == '03'" class="crowded">混雑</p>
-            </div>
-            <div v-for="(comment, index) in comments" :key="index">
-              <div v-if="comment.store_id == post.store_id">
-                <div class="store_message">
-                  <p>{{ comment.comment }}</p>
-                  <div class="comment-date">
-                    投稿日時：{{ comment.update_date }}
-                  </div>
+          <div v-for="(comment, index) in comments" :key="index">
+            <div v-if="comment.store_id == post.store_id">
+              <div class="store_message">
+                <p>{{ comment.comment }}</p>
+                <div class="comment-date">
+                  投稿日時：{{ comment.update_date }}
                 </div>
               </div>
             </div>
-          </modal>
-        </div>
+          </div>
+        </modal>
       </div>
-      <Popup-menu />
     </div>
+    <Popup-menu />
+  </div>
   </div>
 </template>
 
@@ -119,7 +121,6 @@ export default {
   /* font-family: "Font Awesome 5 Free",'Quicksand','Avenir','Arial',sans-serif; */
   margin: 0;
   padding: 0;
-  background-color: #999999;
 }
 img {
   width: 100%;
@@ -149,14 +150,15 @@ img {
   position: relative;
   outline: 1px solid #000;
   font-size: 1.5vw;
+  background-color: #fff;
 }
-/* タブレット　2カラム */
+/* タブレット2カラム */
 @media screen and (max-width: 1024px) {
   .bl_media_itemWrapper {
     width: calc(100% / 2 - 30px);
   }
 }
-/* スマホ 1カラム*/
+/* スマホ1カラム*/
 @media screen and (max-width: 599px) {
   .bl_media_itemWrapper {
     width: calc(100% / 1 - 30px);
