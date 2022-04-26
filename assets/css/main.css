@@ -1,12 +1,17 @@
-.page-enter, .page-leave-to{
+/* TODO: 画面遷移時にまぶしいのでコメントアウト */
+/* .page-enter, .page-leave-to{
     opacity: 0;
+    background-color: #999999;
   }
   .page-enter-active, .page-leave-active{
     transition: opacity .4s;
+    background-color: #999999;
   }
   .layout-enter, .layout-leave-active{
     opacity: 0;
+    background-color: #999999;
   }
   .layout-enter-active, .layout-leave-active{
     transition: opacity .4s;
-  }
+    background-color: #999999;
+  } */
