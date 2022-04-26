@@ -12,6 +12,10 @@
       <li>不具合や気になる箇所がありましたら教えてください</li>
     </ul>
 
+    <h1>Line友達追加</h1>
+    <p>Line友達追加はこちらのQRを読み込んでください</p>
+    <img src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/sample/user_line_qr.png">
+
     <h1>最新のニュース</h1>
     <News001 />
 
@@ -95,12 +99,16 @@ export default {
 <style scoped>
 .container {
   height: 1000vh;
-  width: 100vw;
+  width: 86vw;
   background-color: #999999;
   color: #ffffcc;
   padding-top: 0px;
   padding-left: 100px;
-  padding-right: 100px;
+  padding-right: 45px;
+}
+
+h2 {
+  color: #000;
 }
 
 /* リストデザイン佣 */

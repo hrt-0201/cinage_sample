@@ -1,9 +1,8 @@
 <template>
   <div class="ad-area" @click="returnTop">
-    <Slidevar001/>
     <h1>この画面は広告画面です</h1>
     <video class="ad" autoplay loop muted playsinline>
-      <source src="/cat.mp4" />
+      <source src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/sample/resize.mp4" />
     </video>
     <Popup-menu />
   </div>
@@ -26,9 +25,10 @@ export default {
 }
 
 .ad-area {
+  padding-top: 300px;
   padding-left: 100px;
   background-color: black;
-  height: 100%;
+  height: 300vh;
 }
 
 .ad {

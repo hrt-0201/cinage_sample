@@ -27,9 +27,10 @@
           <!-- 以下がモーダル画面のエリア -->
           <modal
             :name="'modal-content' + post.store_id"
-            :width="600"
+            :width="700"
             height="auto"
             :adaptive="true"
+            :scrollable="true"
           >
             <!-- モーダルの閉じるボタン -->
             <div @click="hide(post.store_id)" class="round_btn"></div>
@@ -212,7 +213,7 @@ h3:before {
   display: block;
   position: relative;
   top: 10px;
-  left: 540px;
+  left: 635px;
   width: 50px;
   height: 50px;
   border-radius: 50%; /* 丸みの度合い */
