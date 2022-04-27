@@ -6,7 +6,7 @@
     <div class="chat01">
       <div class="talk01">
         <div class="comment-store-name">{{ store_name }}</div>
-        <p>{{ comment }}</p>
+        <p class="comment-store-message">{{ comment }}</p>
         <div class="comment-date">投稿日時：{{ update_date }}</div>
       </div>
     </div>
@@ -72,10 +72,10 @@ export default {
 /* 吹き出しの入力部分の作成 */
 .talk01 {
   /* この部分を外すと横幅いっぱいになります */
-  display: inline-block;
+  /* display: inline-block; */
   position: relative;
-  margin: 5px 0 0 105px;
-  padding: 17px 13px;
+  margin: 5px 0 0 130px;
+  padding: 17px 25px;
   /* 吹き出しの丸み具合を変更 */
   border-radius: 12px;
   /* 吹き出しのカラーはここで変更 */
@@ -99,8 +99,10 @@ export default {
 }
 .comment-store-name {
   position: relative; /*相対位置*/
-  padding-left: 1.2em; /*アイコン分のスペース*/
-  line-height: 1.4; /*行高*/
+  padding-left: 1.5em; /*アイコン分のスペース*/
+  line-height: 2; /*行高*/
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 .comment-store-name:before {
   font-family: "Font Awesome 5 Free";
@@ -111,6 +113,10 @@ export default {
   left: 0; /*アイコンの位置*/
   top: 0; /*アイコンの位置*/
   color: #5ab9ff; /*アイコン色*/
+}
+.comment-store-message {
+    line-height: 2; /*行高*/
+  font-size: 2rem;
 }
 .comment-date {
   right: 10px;

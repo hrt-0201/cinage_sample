@@ -61,7 +61,6 @@
           </modal>
         </div>
       </div>
-      <Popup-menu />
     </div>
   </div>
 </template>

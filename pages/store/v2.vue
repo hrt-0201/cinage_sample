@@ -2,7 +2,6 @@
 <div class="store-info-base">
   <div class="bl_media_container">
     <Slidevar001/>
-    
 
     <div
       class="bl_media_itemWrapper"
@@ -65,7 +64,6 @@
         </modal>
       </div>
     </div>
-    <Popup-menu />
   </div>
   </div>
 </template>

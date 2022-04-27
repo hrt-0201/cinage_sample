@@ -19,7 +19,8 @@
     <h1>最新のニュース</h1>
     <News001 />
 
-    <a href="https://master.d2m7f89l829cfb.amplifyapp.com/">AWS Amplify環境はこちらから</a>
+<!-- TODO: いったんAmplifyへのリンクはコメントアウト -->
+    <!-- <a href="https://master.d2m7f89l829cfb.amplifyapp.com/">AWS Amplify環境はこちらから</a> -->
 
     <h1>お店の最新のつぶやき</h1>
     <div v-for="comment in comments" :key="comment.update_date">
@@ -107,6 +108,10 @@ export default {
   padding-right: 45px;
 }
 
+h1 {
+  font-size: 2rem;
+}
+
 h2 {
   color: #000;
 }
@@ -117,14 +122,15 @@ ul {
 }
 
 ul li {
-  width: 80vw;
+  width: 70vw;
   color: black;
+  font-size: 1.5rem;
   position: relative;
   background: #f1f8ff; /*バーの色*/
   line-height: 1.5;
   padding: 0.5em;
   margin-bottom: 4px;
-  border-left: solid 35px #5c9ee7; /*先の色＝アイコン裏の色*/
+  border-left: solid 55px #5c9ee7; /*先の色＝アイコン裏の色*/
   list-style-type: none !important;
 }
 
@@ -138,7 +144,7 @@ ul li:before {
   color: white; /*アイコン色*/
   font-weight: 600; /*アイコンは太字にしない*/
   text-align: center;
-  left: -35px; /*左端からのアイコンまでの距離*/
+  left: -50px; /*左端からのアイコンまでの距離*/
   /*以下 上下中央寄せのため*/
   top: 50%;
   -webkit-transform: translateY(-50%);
