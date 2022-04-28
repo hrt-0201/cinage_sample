@@ -17,7 +17,7 @@
         <div @click="show(post.store_id)" class="cardlink"></div>
         <div class="storeInfo">
           <h3>{{ post.store_name }}</h3>
-          <p>TODO:ここに現在時間と定休日から現在営業中かを表示</p>
+          <p>営業中</p>
         </div>
         <div class="congestion">
           <p>混雑状況</p>
@@ -126,6 +126,9 @@ img {
   vertical-align: bottom;
   object-fit: cover;
 }
+p {
+  font-size:1.5rem;
+}
 .store-info-base {
   background-color: #999999;
   height: 100vh;
@@ -165,7 +168,8 @@ img {
 
 /* 見出しのスタイリング */
 .storeInfo {
-  padding: 20px;
+  padding-top: 20px;
+  padding-left: 20px;
 }
 h3 {
   position: relative;
@@ -187,16 +191,22 @@ h3:before {
 /* ここから混雑状況のスタイリング */
 .congestion {
   text-align: right;
-  padding: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
 }
 .vacancy {
   color: blue;
+  font-size:2rem;
+  font-weight: 700;
 }
 .normal {
   color: black;
+  font-size:2rem;
+  font-weight: 700;
 }
 .crowded {
   color: red;
+  font-size:2rem;
   font-weight: 1000;
 }
 

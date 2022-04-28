@@ -4,7 +4,6 @@
     <video class="ad" autoplay loop muted playsinline>
       <source src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/sample/resize.mp4" />
     </video>
-    <Popup-menu />
   </div>
 </template>
 
