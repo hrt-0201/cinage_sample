@@ -8,8 +8,8 @@
         <span class="close">閉じる</span>
       </label>
       <div class="contents">
-        <p>ニュース概要</p>
-        <p>hogehogehoge</p>
+        <h3>{{title}}</h3>
+        <p>{{description}}</p>
       </div>
     </div>
   <!-- </div> -->
@@ -17,6 +17,7 @@
 
 <script>
 export default {
+  props: ["title", "description"],
   name: "News001",
 };
 </script>

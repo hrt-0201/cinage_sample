@@ -17,7 +17,9 @@
     <img src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/sample/user_line_qr.png"  loading="lazy">
 
     <h1>最新のニュース</h1>
-    <News001 />
+    <div v-for="(news, index) in newses" :key="index">
+      <News001 :title="news.title" :description="news.description"/>
+    </div>
 
 <!-- TODO: いったんAmplifyへのリンクはコメントアウト -->
     <!-- <a href="https://master.d2m7f89l829cfb.amplifyapp.com/">AWS Amplify環境はこちらから</a> -->
@@ -59,10 +61,23 @@ export default {
         // エラー時の処理を書く
         console.log('ERROR!')
     });
+    // 取得先のURL
+    const news_url =
+      "https://57u2y22k2j.execute-api.ap-northeast-1.amazonaws.com/dev/soongetrss";
+    console.log("########## 3");
+    // リクエスト（Get）
+    const response_news = await $axios.$post(news_url).catch(function (error) {
+      // エラー時の処理を書く
+      console.error("ERROR!");
+      return { messages: "error" };
+    });
+    console.log(response);
+    console.log(response_news);
     // 配列で返ってくるのでJSONにして返却
     // console.log(response);
     return {
       comments: response.Items,
+      newses: response_news.slice(0, 1)
     };
   },
 
