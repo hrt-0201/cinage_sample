@@ -14,7 +14,7 @@
 
     <h1>Line友達追加</h1>
     <p>Line友達追加はこちらのQRを読み込んでください</p>
-    <img src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/sample/user_line_qr.png">
+    <img src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/sample/user_line_qr.png"  loading="lazy">
 
     <h1>最新のニュース</h1>
     <News001 />
@@ -114,6 +114,10 @@ h1 {
 
 h2 {
   color: #000;
+}
+
+p {
+  font-size: 1.5rem;
 }
 
 /* リストデザイン佣 */

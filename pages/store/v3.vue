@@ -36,7 +36,7 @@
             <div @click="hide(post.store_id)" class="round_btn"></div>
             <div class="storeInfo">
               <p class="img">
-                <img :src="post.store_image_url" alt="" />
+                <img :src="post.store_image_url" alt="" loading="lazy" />
               </p>
               <h3>{{ post.store_name }}</h3>
               <p>定休日：{{ post.info.holiday }}</p>
@@ -125,6 +125,9 @@ img {
   vertical-align: bottom;
   object-fit: cover;
 }
+p {
+  font-size:1.5rem;
+}
 .store-info-base {
   background-color: #999999;
   height: 100vh;
@@ -185,16 +188,22 @@ h3:before {
 /* ここから混雑状況のスタイリング */
 .congestion {
   text-align: right;
-  padding: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
 }
 .vacancy {
   color: blue;
+  font-size:2rem;
+  font-weight: 700;
 }
 .normal {
   color: black;
+  font-size:2rem;
+  font-weight: 700;
 }
 .crowded {
   color: red;
+  font-size:2rem;
   font-weight: 1000;
 }
 

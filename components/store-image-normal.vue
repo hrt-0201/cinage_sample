@@ -1,6 +1,6 @@
 <template>
   <div class="store-image-normal">
-    <img :src="store_image_url" alt="" />
+    <img :src="store_image_url" alt="" loading="lazy" />
   </div>
 </template>
 

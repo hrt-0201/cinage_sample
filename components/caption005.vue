@@ -16,6 +16,7 @@ h4 {
   position: relative;
   padding: 1rem 2rem calc(1rem + 10px);
   background: #fff100;
+  font-weight: 700;
 }
 
 h4:before {

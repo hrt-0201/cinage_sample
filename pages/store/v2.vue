@@ -10,7 +10,7 @@
     >
       <div class="bl_media_item">
         <p class="img">
-          <img :src="post.store_image_url" alt="" />
+          <img :src="post.store_image_url" alt="" loading="lazy" />
         </p>
         <!-- お店詳細を別画面にする場合は以下を活性化する -->
         <!-- <nuxt-link :to="post.store_id" class="cardlink"></nuxt-link> -->
@@ -37,7 +37,7 @@
           <div @click="hide(post.store_id)" class="round_btn"></div>
           <div class="storeInfo">
             <p class="img">
-              <img :src="post.store_image_url" alt="" />
+              <img :src="post.store_image_url" alt="" loading="lazy" />
             </p>
             <h3>{{ post.store_name }}</h3>
             <p>定休日：{{ post.info.holiday }}</p>

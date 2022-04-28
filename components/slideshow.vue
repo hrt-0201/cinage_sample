@@ -4,13 +4,13 @@
     <div class="hero__inner">
       <ul class="hero-slide">
         <li class="hero-slide__item">
-          <img class="hero-slide__img" src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/store-sample/001.jpg" alt="" />
+          <img class="hero-slide__img" src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/store-sample/001.jpg" alt="" loading="lazy" />
         </li>
         <li class="hero-slide__item">
-          <img class="hero-slide__img" src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/store-sample/002.jpg" alt="" />
+          <img class="hero-slide__img" src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/store-sample/002.jpg" alt="" loading="lazy" />
         </li>
         <li class="hero-slide__item">
-          <img class="hero-slide__img" src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/store-sample/003.jpg" alt="" />
+          <img class="hero-slide__img" src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/store-sample/003.jpg" alt="" loading="lazy" />
         </li>
       </ul>
       <div class="hero__heading">

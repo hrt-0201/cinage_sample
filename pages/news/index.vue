@@ -37,6 +37,7 @@
                 class="img-fluid"
                 src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/logo/soon.png"
                 alt="Avatar"
+                 loading=”lazy”
               />
             </div>
             <div class="card-body" style="overflow-y: auto">
@@ -198,6 +199,9 @@ export default {
 </script>
 
 <style scoped>
+h6 {
+  font-size:1.5rem;
+}
 .news-base {
   padding-left: 80px;
   background-color: #999999;
@@ -312,6 +316,7 @@ export default {
 .modal-text {
   padding-top: 20px;
   background: linear-gradient(transparent 90%, #ffff66 60%);
+  font-size:1.2rem;
 }
 .modal-img img {
   width: 300px;
