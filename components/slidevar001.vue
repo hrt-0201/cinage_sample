@@ -50,16 +50,16 @@ export default {
           title: "",
           icon: "far fa-newspaper fa-2x",
         },
-        // {
-        //   href: "/todo",
-        //   title: "",
-        //   icon: "fa fa-user fa-2x",
-        // },
-        // {
-        //   href: "/store",
-        //   title: "",
-        //   icon: "fa fa-chart-area fa-2x",
-        // },
+        {
+          href: "/todo",
+          title: "",
+          icon: "fa fa-user fa-2x",
+        },
+        {
+          href: "/store",
+          title: "",
+          icon: "fa fa-chart-area fa-2x",
+        },
       ],
     };
   },

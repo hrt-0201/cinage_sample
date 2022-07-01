@@ -6,8 +6,8 @@
     <div class="chat01">
       <div class="talk01">
         <div class="comment-store-name">{{ store_name }}</div>
-        <p class="comment-store-message">{{ comment }}</p>
-        <div class="comment-date">投稿日時：{{ update_date }}</div>
+        <p>{{ comment }}</p>
+        <div class="comment-date">投稿日時：{{ datestr }}</div>
       </div>
     </div>
   </div>
@@ -17,6 +17,23 @@
 export default {
   props: ["store_image_url", "store_name", "comment", "update_date"],
   name: "Baloon001",
+  data: () => {
+    return {
+      datestr: "",
+    };
+  },
+  mounted() {
+    this.datestr =
+      this.update_date.substr(0, 4) +
+      "/" +
+      this.update_date.substr(4, 2) +
+      "/" +
+      this.update_date.substr(6, 2) +
+      " " +
+      this.update_date.substr(8, 2) +
+      ":" +
+      this.update_date.substr(10, 2);
+  },
 };
 </script>
 
@@ -55,7 +72,7 @@ export default {
   float: left;
   margin-right: -80px;
   /* アイコンの大きさ */
-  width: 100px;
+  width: 110px;
 }
 /* アイコン画像の作成 */
 .balloon01 .icon01 img {
@@ -72,10 +89,10 @@ export default {
 /* 吹き出しの入力部分の作成 */
 .talk01 {
   /* この部分を外すと横幅いっぱいになります */
-  /* display: inline-block; */
+  display: inline-block;
   position: relative;
-  margin: 5px 0 0 130px;
-  padding: 17px 25px;
+  margin: 5px 0 0 105px;
+  padding: 17px 13px;
   /* 吹き出しの丸み具合を変更 */
   border-radius: 12px;
   /* 吹き出しのカラーはここで変更 */
@@ -99,10 +116,8 @@ export default {
 }
 .comment-store-name {
   position: relative; /*相対位置*/
-  padding-left: 1.5em; /*アイコン分のスペース*/
-  line-height: 2; /*行高*/
-  font-size: 1.5rem;
-  font-weight: 700;
+  padding-left: 1.2em; /*アイコン分のスペース*/
+  line-height: 1.4; /*行高*/
 }
 .comment-store-name:before {
   font-family: "Font Awesome 5 Free";
@@ -114,15 +129,13 @@ export default {
   top: 0; /*アイコンの位置*/
   color: #5ab9ff; /*アイコン色*/
 }
-.comment-store-message {
-    line-height: 2; /*行高*/
-  font-size: 2rem;
-}
 .comment-date {
   right: 10px;
   bottom: 5px;
-  /* padding: 10px; */
-  font-size: 1rem;
+  padding-right: 15px;
+  padding-top: 15px;
+  font-size: 0.5rem;
+  text-align: right;
   color: #7c7c7c;
 }
 </style>

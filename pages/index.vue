@@ -1,49 +1,53 @@
 <!-- pages/index.vue -->
 <template>
   <section class="container" @click="reset()">
-    <Slidevar001/>
-    <Slideshow />
-    <Title001 />
+    <client-only placeholder="Loading…">
+      <Slidevar001 />
+      <Slideshow />
+      <Title001 />
 
-    <h1>アプリの使い方</h1>
-    <ul>
-      <li>左のサイドメニューから閲覧したい情報を選んでください</li>
-      <li>この画面はサイネージ初期画面を想定しています</li>
-      <li>不具合や気になる箇所がありましたら教えてください</li>
-    </ul>
+      <h1>アプリの使い方</h1>
+      <ul>
+        <li>左のサイドメニューから閲覧したい情報を選んでください</li>
+        <li>この画面はサイネージ初期画面を想定しています</li>
+        <li>不具合や気になる箇所がありましたら教えてください</li>
+      </ul>
 
-    <h1>Line友達追加</h1>
-    <p>Line友達追加はこちらのQRを読み込んでください</p>
-    <img src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/sample/user_line_qr.png"  loading="lazy">
+      <h1>Line友達追加</h1>
+      <p>Line友達追加はこちらのQRを読み込んでください</p>
+      <img
+        src="https://line-store-info-dev.s3.ap-northeast-1.amazonaws.com/sample/user_line_qr.png"
+      />
 
-    <h1>最新のニュース</h1>
-    <div v-for="(news, index) in newses" :key="index">
-      <News001 :title="news.title" :description="news.description"/>
-    </div>
+      <h1>最新のニュース</h1>
+      <News001 />
 
-<!-- TODO: いったんAmplifyへのリンクはコメントアウト -->
-    <!-- <a href="https://master.d2m7f89l829cfb.amplifyapp.com/">AWS Amplify環境はこちらから</a> -->
+      <h1>お店の最新のつぶやき</h1>
+      <div v-for="comment in comments" :key="comment.update_date">
+        <Baloon001
+          :store_image_url="comment.store_image_url"
+          :store_name="comment.store_name"
+          :comment="comment.comment"
+          :update_date="comment.update_date"
+        />
+      </div>
 
-    <h1>お店の最新のつぶやき</h1>
-    <div v-for="comment in comments" :key="comment.update_date">
-      <Baloon001 :store_image_url="comment.store_image_url" :store_name="comment.store_name" :comment="comment.comment" :update_date="comment.update_date" />
-    </div>
+      <div class="weather" @click="show()">
+        <WeatherSwitch />
+      </div>
 
-    <div class="weather" @click="show()">
-      <WeatherSwitch />
-    </div>
-
-    <modal name="modal-content" :width="600" :height="900">
-      <div @click="hide()" class="round_btn"></div>
-      <h2>天気予報</h2>
-      <iframe
-        src="https://www.jma.go.jp/bosai/forecast/#area_type=offices&area_code=090000"
-        width="600"
-        height="800"
-        scrolling="no"
-      ></iframe>
-    </modal>
-    <Popup-menu />
+      <modal name="modal-content" :width="600" :height="900">
+        <div @click="hide()" class="round_btn"></div>
+        <h2>天気予報</h2>
+        <iframe
+          src="https://www.jma.go.jp/bosai/forecast/#area_type=offices&area_code=090000"
+          width="600"
+          height="800"
+          scrolling="no"
+        ></iframe>
+      </modal>
+      <Popup-menu />
+    </client-only>
   </section>
 </template>
 
@@ -57,27 +61,23 @@ export default {
     const url =
       "https://pjle7dwta5.execute-api.ap-northeast-1.amazonaws.com/APITest02/dynamodbctrl";
     // リクエスト（Post）
-    const response = await $axios.$post(url, params).catch(function(error) {
-        // エラー時の処理を書く
-        console.log('ERROR!')
-    });
-    // 取得先のURL
-    const news_url =
-      "https://57u2y22k2j.execute-api.ap-northeast-1.amazonaws.com/dev/soongetrss";
-    console.log("########## 3");
-    // リクエスト（Get）
-    const response_news = await $axios.$post(news_url).catch(function (error) {
+    const response = await $axios.$post(url, params).catch(function (error) {
       // エラー時の処理を書く
-      console.error("ERROR!");
-      return { messages: "error" };
+      console.log("ERROR!");
     });
-    console.log(response);
-    console.log(response_news);
     // 配列で返ってくるのでJSONにして返却
     // console.log(response);
     return {
-      comments: response.Items,
-      newses: response_news.slice(0, 1)
+      comments: response.Items.sort(function (a, b) {
+        // コメントは更新日で降順ソートしてからDOMに渡す
+        if (a.update_date > b.update_date) {
+          return -1;
+        } else if (a.update_date < b.update_date) {
+          return 1;
+        } else {
+          return 0;
+        }
+      }),
     };
   },
 
@@ -100,7 +100,7 @@ export default {
     },
     reset() {
       this.$reset();
-    }
+    },
   },
   mounted() {
     window.onload = () => {
@@ -123,33 +123,20 @@ export default {
   padding-right: 45px;
 }
 
-h1 {
-  font-size: 2rem;
-}
-
-h2 {
-  color: #000;
-}
-
-p {
-  font-size: 1.5rem;
-}
-
 /* リストデザイン佣 */
 ul {
   padding: 0;
 }
 
 ul li {
-  width: 70vw;
+  width: 80vw;
   color: black;
-  font-size: 1.5rem;
   position: relative;
   background: #f1f8ff; /*バーの色*/
   line-height: 1.5;
   padding: 0.5em;
   margin-bottom: 4px;
-  border-left: solid 55px #5c9ee7; /*先の色＝アイコン裏の色*/
+  border-left: solid 35px #5c9ee7; /*先の色＝アイコン裏の色*/
   list-style-type: none !important;
 }
 
@@ -163,7 +150,7 @@ ul li:before {
   color: white; /*アイコン色*/
   font-weight: 600; /*アイコンは太字にしない*/
   text-align: center;
-  left: -50px; /*左端からのアイコンまでの距離*/
+  left: -35px; /*左端からのアイコンまでの距離*/
   /*以下 上下中央寄せのため*/
   top: 50%;
   -webkit-transform: translateY(-50%);

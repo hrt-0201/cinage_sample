@@ -51,6 +51,10 @@
         </tr>
       </tbody>
     </table>
+
+    <h1>Todoリスト,Vue3バージョン</h1>
+
+    <h1>Qiita</h1>
     <div>
       <ul>
         <li v-for="(post, index) in posts" :key="index">
@@ -117,10 +121,13 @@ export default {
 
 <style scoped>
 .container {
-  padding: 100px;
-  height: 100vh;
+  height: 300vh;
+  width: 86vw;
   background-color: #999999;
   color: #ffffcc;
+  padding-top: 0px;
+  padding-left: 100px;
+  padding-right: 45px;
 }
 
 /* リストデザイン佣 */
